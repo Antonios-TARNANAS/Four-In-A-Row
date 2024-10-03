@@ -30,17 +30,19 @@ public class FourInARow {
 
 
                                 // P1 plays
-            System.out.print("\nP1 choisis une colonne -> colonne 0->6: ");
-            int colonne_P1 = scanner.nextInt();
+            System.out.print("\nP1 choisis une colonne -> colonne 1->7: ");
+            int colonne_P1 = scanner.nextInt()-1;
             game.play(colonne_P1, p1);
             System.out.println("\n");
             game.printBoard();
             if (game.hasWon(p1)) {
-                System.out.println("\nP1 HAS WON"); 
+                System.out.println("\nP1 HAS WON");
+                game.printBoard(); 
                 System.out.println("\nGAME OVER");
                 break;
             } else if (game.hasWon(p2)){
                 System.out.println("\nP2 HAS WON");
+                game.printBoard();
                 System.out.println("\nGAME OVER");
                 break;
             } else {
@@ -50,18 +52,21 @@ public class FourInARow {
 
 
                                 // P2 plays
-            System.out.print("\nP2 choisis une colonne -> colonne 0->6: ");
-            int colonne_P2 = scanner.nextInt();
+            System.out.print("\nP2 choisis une colonne -> colonne 1->7: ");
+            int colonne_P2 = scanner.nextInt()-1;
             game.play(colonne_P2, p2);
             System.out.println("\n");
             game.printBoard();
             if (game.hasWon(p1)) {
                 System.out.println("\nP1 HAS WON"); 
+                game.printBoard();
                 System.out.println("\nGAME OVER");
                 break;
             } else if (game.hasWon(p2)){
                 System.out.println("\nP2 HAS WON");
+                game.printBoard();
                 System.out.println("\nGAME OVER");
+                
                 break;
             } else {
                 System.out.println("\n");
@@ -70,10 +75,10 @@ public class FourInARow {
         scanner.close();
     }
     private static final int ROWS = 6;
-    private static final int COLUMNS = 7;
+    private static final int COLUMNS = 7  ;
 
-    private static final String EMPTY = "| -";
-    private static final String[] PLAYERS = {"| X", "| O"};
+    private static final String EMPTY = " -";
+    private static final String[] PLAYERS = {" X", " O"};
 
     // add your own instance variables here
     private String[][] board = new String[ROWS][COLUMNS];
@@ -98,9 +103,8 @@ public class FourInARow {
      * 3) or if the player is not X or O
      */
     public void play(int j, String player) { // j is the column index
-
+        
         //columns numbers are beginning from 0 (just in case)
-
         if (player == PLAYERS[0] || player == PLAYERS[1]) {// 3)
             // valid column index?
             // column j not full?
@@ -170,7 +174,7 @@ public class FourInARow {
                 }
             }
 
-            // win condition diagonal 4 " \ "
+            // win condition diagonal 4 " / "
             for (int i = 0; i < ROWS-3; i++) {
 
                 for (int j = 0; j < COLUMNS-3; j++) {
@@ -184,7 +188,7 @@ public class FourInARow {
                 }
             }
 
-            // win condition diagonal 4 " / "
+            // win condition diagonal 4 " \ "
             for (int i = ROWS-3; i < ROWS; i++) {
 
                 for (int j = 0; j < COLUMNS-3; j++) {
@@ -210,14 +214,15 @@ public class FourInARow {
     void printBoard(){
         System.out.println("\n");
         for (int i = 0; i < ROWS; i++) {
-
+            
             for (int j = 0; j < COLUMNS; j++) {
-                System.out.print(board[i][j]);
+                
+                System.out.print("|"+board[i][j]);
                 System.out.print(" ");
                 
             }System.out.println("|");
 
         }
-        System.out.println("  0   1   2   3   4   5   6 ");
+        System.out.println("  1   2   3   4   5   6   7");
     }
 }
