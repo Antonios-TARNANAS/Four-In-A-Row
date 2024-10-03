@@ -65,7 +65,7 @@ public class FourInARow {
             } else if (game.hasWon(p2)){
                 System.out.println("\nP2 HAS WON");
                 game.printBoard();
-                System.out.println("\nGAME OVER");
+                System.out.println(RED+"\nGAME OVER"+RESET);
                 
                 break;
             } else {
@@ -74,13 +74,26 @@ public class FourInARow {
         }
         scanner.close();
     }
+
+
+    public static final String RESET = "\033[0m";  // Reset to default color
+    public static final String RED = "\033[31m";   // Red color
+    public static final String GREEN = "\033[32m"; // Green color
+    public static final String BLUE = "\033[34m";  // Blue color
+    public static final String YELLOW = "\033[33m";  // Yellow color
+    public static final String MAGENTA = "\033[35m";  // Magenta color
+
+
     private static final int ROWS = 6;
     private static final int COLUMNS = 7  ;
 
-    private static final String EMPTY = " -";
-    private static final String[] PLAYERS = {" X", " O"};
+    private static final String EMPTY = "__";
+    private static final String[] PLAYERS = {"_"+GREEN+"X"+RESET, "_"+MAGENTA+"O"+RESET};
 
-    // add your own instance variables here
+    
+
+
+
     private String[][] board = new String[ROWS][COLUMNS];
 
 
@@ -218,7 +231,7 @@ public class FourInARow {
             for (int j = 0; j < COLUMNS; j++) {
                 
                 System.out.print("|"+board[i][j]);
-                System.out.print(" ");
+                System.out.print("_");
                 
             }System.out.println("|");
 
