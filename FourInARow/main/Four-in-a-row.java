@@ -22,17 +22,42 @@ public class FourInARow {
 
         Scanner scanner = new Scanner(System.in);
 
-        char playerSymbol=' ';
-        int isPlaying = 1;
-        while (isPlaying==1) {
-            game.printBoard();
-            System.out.print("\ncolonne 0->6: ");
-            int colonne = scanner.nextInt();
-            System.out.print("\nplayer 1 or 2: ");
-            int player = scanner.nextInt();
+        char p1 = PLAYERS[0];
+        char p2 = PLAYERS[1];
+        game.printBoard(); // initial print
+        while (!game.hasWon(p1) || !game.hasWon(p2)) {
 
-            if (player==1){playerSymbol='X';}else if(player==2){playerSymbol='O';}else{isPlaying=0;}
-            game.play(colonne, playerSymbol);
+            System.out.print("\nP1 choisis une colonne -> colonne 0->6: ");
+            int colonne_P1 = scanner.nextInt();
+            game.play(colonne_P1, p1);
+            System.out.println("\n");
+            game.printBoard();
+            if (game.hasWon(p1)) {
+                System.out.println("\nP1 HAS WON"); 
+                System.out.println("\nGAME OVER");
+                break;
+            }
+            else if (game.hasWon(p2)){
+                System.out.println("\nP2 HAS WON");
+                System.out.println("\nGAME OVER");
+                break;
+            }else {System.out.println("\n");}
+
+            System.out.print("\nP2 choisis une colonne -> colonne 0->6: ");
+            int colonne_P2 = scanner.nextInt();
+            game.play(colonne_P2, p2);
+            System.out.println("\n");
+            game.printBoard();
+            if (game.hasWon(p1)) {
+                System.out.println("\nP1 HAS WON"); 
+                System.out.println("\nGAME OVER");
+                break;
+            }
+            else if (game.hasWon(p2)){
+                System.out.println("\nP2 HAS WON");
+                System.out.println("\nGAME OVER");
+                break;
+            }else {System.out.println("\n");}
         }
         scanner.close();
     }
@@ -106,7 +131,6 @@ public class FourInARow {
      * @throws IllegalArgumentException if the player is not X or O
      */
     public boolean hasWon(char player) {
-        // add your own code here
 
         if (player == PLAYERS[0] || player == PLAYERS[1]) {
 
