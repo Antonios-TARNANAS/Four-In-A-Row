@@ -27,6 +27,9 @@ public class FourInARow {
         game.printBoard(); // initial print
         while (!game.hasWon(p1) || !game.hasWon(p2)) {
 
+
+
+                                // P1 plays
             System.out.print("\nP1 choisis une colonne -> colonne 0->6: ");
             int colonne_P1 = scanner.nextInt();
             game.play(colonne_P1, p1);
@@ -36,13 +39,17 @@ public class FourInARow {
                 System.out.println("\nP1 HAS WON"); 
                 System.out.println("\nGAME OVER");
                 break;
-            }
-            else if (game.hasWon(p2)){
+            } else if (game.hasWon(p2)){
                 System.out.println("\nP2 HAS WON");
                 System.out.println("\nGAME OVER");
                 break;
-            }else {System.out.println("\n");}
+            } else {
+                System.out.println("\n");
+            }
 
+
+
+                                // P2 plays
             System.out.print("\nP2 choisis une colonne -> colonne 0->6: ");
             int colonne_P2 = scanner.nextInt();
             game.play(colonne_P2, p2);
@@ -52,12 +59,13 @@ public class FourInARow {
                 System.out.println("\nP1 HAS WON"); 
                 System.out.println("\nGAME OVER");
                 break;
-            }
-            else if (game.hasWon(p2)){
+            } else if (game.hasWon(p2)){
                 System.out.println("\nP2 HAS WON");
                 System.out.println("\nGAME OVER");
                 break;
-            }else {System.out.println("\n");}
+            } else {
+                System.out.println("\n");
+            }
         }
         scanner.close();
     }
@@ -89,8 +97,7 @@ public class FourInARow {
      * 2) or if the column is full
      * 3) or if the player is not X or O
      */
-    public void play(int j, String player) {
-        // add your own code here
+    public void play(int j, String player) { // j is the column index
 
         //columns numbers are beginning from 0 (just in case)
 
@@ -103,13 +110,13 @@ public class FourInARow {
                 }
             }
             // bad j too big or small
-            if (j < 0 || COLUMNS <= j) // 1)
+            if (j < 0 || COLUMNS <= j) // 
                 throw new IllegalArgumentException();
 
 
-            for (int i = 0; i < ROWS; i++) { // ça c good
+            for (int i = 0; i < ROWS; i++) { // 
 
-                if (board[i][j] != EMPTY && i!=0) {
+                if (board[i][j] != EMPTY && i!=0 && board[i-1][j] == EMPTY) {
                     board[i-1][j] = player;
                 } else if (i==ROWS-1 && board[i][j] == EMPTY) {
                     board[i][j] = player;
