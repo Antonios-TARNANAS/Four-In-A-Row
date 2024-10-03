@@ -22,8 +22,8 @@ public class FourInARow {
 
         Scanner scanner = new Scanner(System.in);
 
-        char p1 = PLAYERS[0];
-        char p2 = PLAYERS[1];
+        String p1 = PLAYERS[0];
+        String p2 = PLAYERS[1];
         game.printBoard(); // initial print
         while (!game.hasWon(p1) || !game.hasWon(p2)) {
 
@@ -64,11 +64,11 @@ public class FourInARow {
     private static final int ROWS = 6;
     private static final int COLUMNS = 7;
 
-    private static final char EMPTY = '-';
-    private static final char[] PLAYERS = {'X', 'O'};
+    private static final String EMPTY = "| -";
+    private static final String[] PLAYERS = {"| X", "| O"};
 
     // add your own instance variables here
-    private char[][] board = new char[ROWS][COLUMNS];
+    private String[][] board = new String[ROWS][COLUMNS];
 
 
     public FourInARow() {
@@ -89,7 +89,7 @@ public class FourInARow {
      * 2) or if the column is full
      * 3) or if the player is not X or O
      */
-    public void play(int j, char player) {
+    public void play(int j, String player) {
         // add your own code here
 
         //columns numbers are beginning from 0 (just in case)
@@ -130,7 +130,7 @@ public class FourInARow {
      * @return true if the player has won the game
      * @throws IllegalArgumentException if the player is not X or O
      */
-    public boolean hasWon(char player) {
+    public boolean hasWon(String player) {
 
         if (player == PLAYERS[0] || player == PLAYERS[1]) {
 
@@ -201,12 +201,16 @@ public class FourInARow {
     }
 
     void printBoard(){
+        System.out.println("\n");
         for (int i = 0; i < ROWS; i++) {
+
             for (int j = 0; j < COLUMNS; j++) {
                 System.out.print(board[i][j]);
                 System.out.print(" ");
-            }
-            System.out.println();
+                
+            }System.out.println("|");
+
         }
+        System.out.println("  0   1   2   3   4   5   6 ");
     }
 }
