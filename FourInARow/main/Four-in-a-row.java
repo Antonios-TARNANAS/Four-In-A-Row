@@ -83,6 +83,7 @@ public class FourInARow {
                 }catch(Exception e){
                     playagain=0;
                     game.printBoard();
+                    System.out.println("\n"+GREENp1+"P1"+RESET+ " HAS WON! ");
                     System.out.println(RED+"\n-GAME OVER-"+RESET);
                     break;
                 }
@@ -96,7 +97,8 @@ public class FourInARow {
                     
                     playagain=0;
                     game.printBoard();
-                    System.out.println(RED+"\nGAME OVER--"+RESET);
+                    System.out.println("\n"+GREENp1+"P1"+RESET+ " HAS WON! ");
+                    System.out.println(RED+"\n-GAME OVER-"+RESET);
                     break;
                 }
             } else if (game.hasWon(p2)){
@@ -112,6 +114,7 @@ public class FourInARow {
                 }catch(Exception e){
                     playagain=0;
                     game.printBoard();
+                    System.out.println("\n"+MAGENTAp2+"P2"+RESET+ " HAS WON! ");
                     System.out.println(RED+"\n-GAME OVER-"+RESET);
                     break;
                 }
@@ -126,6 +129,7 @@ public class FourInARow {
                     
                     playagain=0;
                     game.printBoard();
+                    System.out.println("\n"+MAGENTAp2+"P2"+RESET+ " HAS WON! ");
                     System.out.println(RED+"\n-GAME OVER-"+RESET);
                     break;
                 }
@@ -446,4 +450,3 @@ public class FourInARow {
         System.out.println("  1   2   3   4   5   6   7");
     }
 }
-
