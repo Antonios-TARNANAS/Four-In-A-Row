@@ -25,14 +25,34 @@ public class FourInARow {
         String p1 = PLAYERS[0];
         String p2 = PLAYERS[1];
         game.printBoard(); // initial print
-        while (!game.hasWon(p1) || !game.hasWon(p2)) {
+        while (!game.hasWon(p1) || !game.hasWon(p2)) { // P1 plays
 
 
 
-                                // P1 plays
-            System.out.print("\nP1 choisis une colonne -> colonne 1->7: ");
+                                
+            System.out.print("\n"+GREENp1+"P1"+RESET+" choisis une colonne -> colonne 1->7: ");
             int colonne_P1 = scanner.nextInt()-1;
-            game.play(colonne_P1, p1);
+            //
+            boolean ilachoisiunebonnecolonneP1 = false;
+            while (!ilachoisiunebonnecolonneP1) {
+                try {
+                    game.play(colonne_P1, p1);
+                    ilachoisiunebonnecolonneP1 = true;
+                } catch (IllegalArgumentException e) {
+                    ilachoisiunebonnecolonneP1 = false;
+                    System.out.print("\n"+GREENp1+"P1"+RESET+" choisis une  autre colonne car erreur avec celle-ci -"+RED+(colonne_P1+1)+RESET+"-  : ");
+                    int colonne_mod = scanner.nextInt()-1;
+                    //System.out.println(colonne_mod);
+                    while (colonne_mod == colonne_P1) {
+                        System.out.println(GREENp1+"P1"+RESET+" Veuillez choisir une autre colonne que "+RED+(colonne_P1+1)+RESET+" s'il vous plait:");
+                        colonne_mod = scanner.nextInt()-1;
+
+                    }
+                    ilachoisiunebonnecolonneP1 = true;
+                    game.play(colonne_mod, p1);
+                }
+            }
+            //
             System.out.println("\n");
             game.printBoard();
             if (game.hasWon(p1)) {
@@ -51,10 +71,30 @@ public class FourInARow {
 
 
 
-                                // P2 plays
-            System.out.print("\nP2 choisis une colonne -> colonne 1->7: ");
+                                
+            System.out.print("\n"+MAGENTAp2+"P2"+RESET+" choisis une colonne -> colonne 1->7: "); // P2 plays
             int colonne_P2 = scanner.nextInt()-1;
-            game.play(colonne_P2, p2);
+            //
+            boolean ilachoisiunebonnecolonneP2 = false;
+            while (!ilachoisiunebonnecolonneP2) {
+                try {
+                    game.play(colonne_P2, p2);
+                    ilachoisiunebonnecolonneP2 = true;
+                } catch (IllegalArgumentException e) {
+                    ilachoisiunebonnecolonneP2 = false;
+                    System.out.print("\n"+MAGENTAp2+"P2"+RESET+" choisis une  autre colonne car erreur avec celle-ci -"+RED+(colonne_P2+1)+RESET+"-  : ");
+                    int colonne_mod = scanner.nextInt()-1;
+                    //System.out.println(colonne_mod);
+                    while (colonne_mod == colonne_P2) {
+                        System.out.println(MAGENTAp2+"P2"+RESET+" Veuillez choisir une autre colonne que "+RED+(colonne_P2+1)+RESET+" s'il vous plait:");
+                        colonne_mod = scanner.nextInt()-1;
+
+                    }
+                    ilachoisiunebonnecolonneP2 = true;
+                    game.play(colonne_mod, p2);
+                }
+            } 
+            //
             System.out.println("\n");
             game.printBoard();
             if (game.hasWon(p1)) {
@@ -78,17 +118,17 @@ public class FourInARow {
 
     public static final String RESET = "\033[0m";  // Reset to default color
     public static final String RED = "\033[31m";   // Red color
-    public static final String GREEN = "\033[32m"; // Green color
+    public static final String GREENp1 = "\033[32m"; // Green color
     public static final String BLUE = "\033[34m";  // Blue color
     public static final String YELLOW = "\033[33m";  // Yellow color
-    public static final String MAGENTA = "\033[35m";  // Magenta color
+    public static final String MAGENTAp2 = "\033[35m";  // Magenta color
 
 
     private static final int ROWS = 6;
     private static final int COLUMNS = 7  ;
 
     private static final String EMPTY = "__";
-    private static final String[] PLAYERS = {"_"+GREEN+"X"+RESET, "_"+MAGENTA+"O"+RESET};
+    private static final String[] PLAYERS = {"_"+GREENp1+"X"+RESET, "_"+MAGENTAp2+"O"+RESET};
 
     
 
