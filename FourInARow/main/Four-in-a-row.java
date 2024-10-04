@@ -16,7 +16,8 @@ import java.util.Scanner;
  * if the player has won the game.
  * We advise you to model the state of the game with an internal 2D array of char.
  */
-public class FourInARow {
+
+public class FourInARow {    
     public static void main(String[] args) {
         FourInARow game = new FourInARow();
 
@@ -32,38 +33,47 @@ public class FourInARow {
                                 
             System.out.print("\n"+GREENp1+"P1"+RESET+" choisis une colonne -> colonne 1->7: ");
             int colonne_P1 = scanner.nextInt()-1;
-            //
+            // recopier lignes try catch p2 dans p1
             boolean ilachoisiunebonnecolonneP1 = false;
             while (!ilachoisiunebonnecolonneP1) {
                 try {
                     game.play(colonne_P1, p1);
                     ilachoisiunebonnecolonneP1 = true;
-                } catch (IllegalArgumentException e) {
+                } catch (Exception e) {
                     ilachoisiunebonnecolonneP1 = false;
                     System.out.print("\n"+GREENp1+"P1"+RESET+" choisis une  autre colonne car erreur avec celle-ci -"+RED+(colonne_P1+1)+RESET+"-  : ");
                     int colonne_mod = scanner.nextInt()-1;
                     //System.out.println(colonne_mod);
-                    while (colonne_mod == colonne_P1) {
-                        System.out.println(GREENp1+"P1"+RESET+" Veuillez choisir une autre colonne que "+RED+(colonne_P1+1)+RESET+" s'il vous plait:");
-                        colonne_mod = scanner.nextInt()-1;
+                    while (colonne_mod == colonne_P1 && !ilachoisiunebonnecolonneP1) {
+                        if (colonne_mod==colonne_P1){
+                            System.out.println(GREENp1+"P1"+RESET+" Veuillez choisir une autre colonne que "+RED+(colonne_P1+1)+RESET+" s'il vous plait:");
+                            colonne_mod = scanner.nextInt()-1;
+                        } else if (!ilachoisiunebonnecolonneP1){
+                            System.out.println(GREENp1+"P1"+RESET+" Veuillez choisir une autre colonne que "+RED+(colonne_P1+1)+RESET+" s'il vous plait! Cette colonne n'est pas valide. Choix: ");
+                            colonne_mod = scanner.nextInt()-1;
+                        } else {
+                            System.out.println(RED+"Message d'erreur : "+RESET);
+                            colonne_mod = scanner.nextInt()-1;
+                        }
+                        
 
                     }
                     ilachoisiunebonnecolonneP1 = true;
-                    game.play(colonne_mod, p1);
+                    game.play(colonne_mod, p1); // Ceci doit être entouré par un try{}__catch(){}
                 }
             }
             //
             System.out.println("\n");
             game.printBoard();
             if (game.hasWon(p1)) {
-                System.out.println("\n"+GREENp1+"P1"+RESET+ " HAS WON! "); 
                 game.printBoard();
+                System.out.println("\n"+GREENp1+"P1"+RESET+ " HAS WON! "); 
                 System.out.println(RED+"\nGAME OVER"+RESET);
  
                 break;
             } else if (game.hasWon(p2)){
-                System.out.println("\n"+MAGENTAp2+"P2"+RESET+ " HAS WON! ");
                 game.printBoard();
+                System.out.println("\n"+MAGENTAp2+"P2"+RESET+ " HAS WON! ");
                 System.out.println(RED+"\nGAME OVER"+RESET);
                 
                 break;
@@ -82,18 +92,27 @@ public class FourInARow {
                 try {
                     game.play(colonne_P2, p2);
                     ilachoisiunebonnecolonneP2 = true;
-                } catch (IllegalArgumentException e) {
+                } catch (Exception e) {
                     ilachoisiunebonnecolonneP2 = false;
                     System.out.print("\n"+MAGENTAp2+"P2"+RESET+" choisis une  autre colonne car erreur avec celle-ci -"+RED+(colonne_P2+1)+RESET+"-  : ");
                     int colonne_mod = scanner.nextInt()-1;
                     //System.out.println(colonne_mod);
-                    while (colonne_mod == colonne_P2) {
-                        System.out.println(MAGENTAp2+"P2"+RESET+" Veuillez choisir une autre colonne que "+RED+(colonne_P2+1)+RESET+" s'il vous plait:");
-                        colonne_mod = scanner.nextInt()-1;
+                    while (colonne_mod == colonne_P2 && !ilachoisiunebonnecolonneP2) {
+                        if (colonne_mod==colonne_P2){
+                            System.out.println(MAGENTAp2+"P2"+RESET+" Veuillez choisir une autre colonne que "+RED+(colonne_P2+1)+RESET+" s'il vous plait:");
+                            colonne_mod = scanner.nextInt()-1;
+                        } else if (!ilachoisiunebonnecolonneP2){
+                            System.out.println(MAGENTAp2+"P2"+RESET+" Veuillez choisir une autre colonne que "+RED+(colonne_P2+1)+RESET+" s'il vous plait! Cette colonne n'est pas valide. Choix: ");
+                            colonne_mod = scanner.nextInt()-1;
+                        } else {
+                            System.out.println(RED+"Message d'erreur : "+RESET);
+                            colonne_mod = scanner.nextInt()-1;
+                        }
+                        
 
                     }
                     ilachoisiunebonnecolonneP2 = true;
-                    game.play(colonne_mod, p2);
+                    game.play(colonne_mod, p2); // Ceci doit être entouré par un try{}__catch(){}
                 }
             } 
             //
@@ -159,6 +178,9 @@ public class FourInARow {
      * 3) or if the player is not X or O
      */
     public void play(int j, String player) { // j is the column index
+        if (j>COLUMNS || j<0){
+            throw new IllegalArgumentException(RED+"colonne indiquée > COLUMNS ou colonne indiquée < 0"+RESET);
+        }
         
         //columns numbers are beginning from 0 (just in case)
         if (player == PLAYERS[0] || player == PLAYERS[1]) {// 3)
