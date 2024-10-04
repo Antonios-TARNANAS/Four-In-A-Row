@@ -56,14 +56,16 @@ public class FourInARow {
             System.out.println("\n");
             game.printBoard();
             if (game.hasWon(p1)) {
-                System.out.println("\nP1 HAS WON");
-                game.printBoard(); 
-                System.out.println("\nGAME OVER");
+                System.out.println("\n"+GREENp1+"P1"+RESET+ " HAS WON! "); 
+                game.printBoard();
+                System.out.println(RED+"\nGAME OVER"+RESET);
+ 
                 break;
             } else if (game.hasWon(p2)){
-                System.out.println("\nP2 HAS WON");
+                System.out.println("\n"+MAGENTAp2+"P2"+RESET+ " HAS WON! ");
                 game.printBoard();
-                System.out.println("\nGAME OVER");
+                System.out.println(RED+"\nGAME OVER"+RESET);
+                
                 break;
             } else {
                 System.out.println("\n");
@@ -98,12 +100,13 @@ public class FourInARow {
             System.out.println("\n");
             game.printBoard();
             if (game.hasWon(p1)) {
-                System.out.println("\nP1 HAS WON"); 
+                System.out.println("\n"+GREENp1+"P1"+RESET+ " HAS WON! "); 
                 game.printBoard();
-                System.out.println("\nGAME OVER");
+                System.out.println(RED+"\nGAME OVER"+RESET);
+ 
                 break;
             } else if (game.hasWon(p2)){
-                System.out.println("\nP2 HAS WON");
+                System.out.println("\n"+MAGENTAp2+"P2"+RESET+ " HAS WON! ");
                 game.printBoard();
                 System.out.println(RED+"\nGAME OVER"+RESET);
                 
@@ -208,6 +211,21 @@ public class FourInARow {
                             (board[i+1][j] == player) &&
                             (board[i+2][j] == player) &&
                             (board[i+3][j] == player)) {
+
+
+                                System.out.print("|--  "+board[i][j]+"  --|");
+                                System.out.print("|--  "+board[i+1][j]+"  --|");
+                                System.out.print("|--  "+board[i+2][j]+"  --|");
+                                System.out.print("|--  "+board[i+3][j]+"  --|");
+
+                                board[i][j]=YELLOW+board[i][j]+RESET;
+                                board[i+1][j]=YELLOW+board[i+1][j]+RESET;
+                                board[i+2][j]=YELLOW+board[i+2][j]+RESET;
+                                board[i+3][j]=YELLOW+board[i+3][j]+RESET;
+
+
+
+
                         return true;
                     }
                 }
@@ -222,6 +240,14 @@ public class FourInARow {
                             board[i][j+1] == player &&
                             board[i][j+2] == player &&
                             board[i][j+3] == player) {
+
+
+                                board[i][j]=YELLOW+board[i][j]+RESET;
+                                board[i][j+1]=YELLOW+board[i][j+1]+RESET;
+                                board[i][j+2]=YELLOW+board[i][j+2]+RESET;
+                                board[i][j+3]=YELLOW+board[i][j+3]+RESET;
+
+
                         return true;
                     }
                 }
@@ -236,6 +262,14 @@ public class FourInARow {
                             board[i+1][j+1] == player &&
                             board[i+2][j+2] == player &&
                             board[i+3][j+3] == player) {
+
+
+                                board[i][j]=YELLOW+board[i][j]+RESET;
+                                board[i+1][j+1]=YELLOW+board[i+1][j+1]+RESET;
+                                board[i+2][j+2]=YELLOW+board[i+2][j+2]+RESET;
+                                board[i+3][j+3]=YELLOW+board[i+3][j+3]+RESET;
+
+
                         return true;
                     }
                 }
@@ -250,6 +284,13 @@ public class FourInARow {
                             board[i-1][j+1] == player &&
                             board[i-2][j+2] == player &&
                             board[i-3][j+3] == player) {
+
+
+                                board[i][j]=YELLOW+board[i][j]+RESET;
+                                board[i-1][j+1]=YELLOW+board[i-1][j+1]+RESET;
+                                board[i-2][j+2]=YELLOW+board[i-2][j+2]+RESET;
+                                board[i-3][j+3]=YELLOW+board[i-3][j+3]+RESET;
+
                         return true;
                     }
                 }
