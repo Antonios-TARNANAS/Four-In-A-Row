@@ -1,20 +1,21 @@
 import java.util.Scanner;
 
 /**
- * A class that represents a game of Four in a Row.
- * The game is played on a 6x7 board.
- * A player wins when he has 4 pieces in a row, column or diagonal.
+ * The FourInARow class represents the game "Four in a Row" (also known as Connect Four).
+ * It is a two-player connection game where players take turns dropping colored tokens into a 
+ * vertically suspended grid with 6 rows and 7 columns.
  *
- * ForInARow is a two-player connection rack game, in which the players choose a color and
- * then take turns dropping colored tokens into a six-row, seven-column vertically suspended grid.
- * The pieces fall straight down, occupying the lowest available space within the column.
+ * The game is won when a player successfully aligns four of their tokens consecutively in a row,
+ * either horizontally, vertically, or diagonally.
  *
- * The objective of the game is to be the first to form a horizontal,
- * vertical, or diagonal line of four of one's own tokens.
+ * Game Details:
+ * - The board is represented by a 6x7 grid.
+ * - Players choose a color and take turns dropping tokens into the columns of the grid.
+ * - When a token is dropped into a column, it occupies the lowest available row within that column.
  *
- * Your task is to model the game and implement the method hasWon(char player) that returns true.
- * if the player has won the game.
- * We advise you to model the state of the game with an internal 2D array of char.
+ * Objective:
+ * - The goal of the game is to be the first player to form a sequence of four consecutive tokens
+ *   in a horizontal, vertical, or diagonal direction.
  */
 
 public class FourInARow {    
