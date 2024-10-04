@@ -26,7 +26,10 @@ public class FourInARow {
         String p1 = PLAYERS[0];
         String p2 = PLAYERS[1];
         game.printBoard(); // initial print
-        while (!game.hasWon(p1) || !game.hasWon(p2)) { // P1 plays
+
+        int playagain = 1;
+
+        while (playagain==1 || (!game.hasWon(p1) && !game.hasWon(p2))) { // P1 plays
 
 
 
@@ -65,18 +68,68 @@ public class FourInARow {
             //
             System.out.println("\n");
             game.printBoard();
+            String playAgainQuote = "press [1] to play again; [0] or other to quit.";
+
+            ///
             if (game.hasWon(p1)) {
+                 
                 game.printBoard();
-                System.out.println("\n"+GREENp1+"P1"+RESET+ " HAS WON! "); 
-                System.out.println(RED+"\nGAME OVER"+RESET);
+                System.out.println("\n"+GREENp1+"P1"+RESET+ " HAS WON! ");
+                System.out.println(BLUE+"\nPLAY AGAIN ?"+RESET);
+                
+                System.out.println(playAgainQuote);
+                try{
+                    playagain = scanner.nextInt();
+                }catch(Exception e){
+                    playagain=0;
+                    game.printBoard();
+                    System.out.println(RED+"\n-GAME OVER-"+RESET);
+                    break;
+                }
  
-                break;
+                
+                if (playagain==1){
+                    //System.out.println("!!!!!!!!!!!!!!!!!!p1 won"); for debugging
+                    game = new FourInARow();
+                    game.printBoard();
+                }else{
+                    
+                    playagain=0;
+                    game.printBoard();
+                    System.out.println(RED+"\nGAME OVER--"+RESET);
+                    break;
+                }
             } else if (game.hasWon(p2)){
+                
                 game.printBoard();
                 System.out.println("\n"+MAGENTAp2+"P2"+RESET+ " HAS WON! ");
-                System.out.println(RED+"\nGAME OVER"+RESET);
+                System.out.println(BLUE+"\nPLAY AGAIN ?"+RESET);
+
+
+                System.out.println(playAgainQuote);
+                try{
+                    playagain = scanner.nextInt();
+                }catch(Exception e){
+                    playagain=0;
+                    game.printBoard();
+                    System.out.println(RED+"\n-GAME OVER-"+RESET);
+                    break;
+                }
+
                 
-                break;
+                if (playagain==1){
+                    //System.out.println("!!!!!!!!!!!!!!!!!!p2 won"); for debugging
+                    game = new FourInARow();
+                    game.printBoard();
+
+                } else {
+                    
+                    playagain=0;
+                    game.printBoard();
+                    System.out.println(RED+"\n-GAME OVER-"+RESET);
+                    break;
+                }
+                
             } else {
                 System.out.println("\n");
             }
@@ -118,22 +171,74 @@ public class FourInARow {
             //
             System.out.println("\n");
             game.printBoard();
+            //String playAgainQuote = "press [1] to play again; [0] or other to quit.";
+
+            ///
+
             if (game.hasWon(p1)) {
-                System.out.println("\n"+GREENp1+"P1"+RESET+ " HAS WON! "); 
-                game.printBoard();
-                System.out.println(RED+"\nGAME OVER"+RESET);
- 
-                break;
-            } else if (game.hasWon(p2)){
-                System.out.println("\n"+MAGENTAp2+"P2"+RESET+ " HAS WON! ");
-                game.printBoard();
-                System.out.println(RED+"\nGAME OVER"+RESET);
                 
-                break;
+                game.printBoard();
+                System.out.println("\n"+GREENp1+"P1"+RESET+ " HAS WON! "); 
+                System.out.println(BLUE+"\nPLAY AGAIN ?"+RESET);
+                
+                System.out.println(playAgainQuote);
+                try{
+                    playagain = scanner.nextInt();
+                }catch(Exception e){
+                    playagain=0;
+                    game.printBoard();
+                    System.out.println(RED+"\n-GAME OVER-"+RESET);
+                    break;
+                }
+ 
+                
+                if (playagain==1){
+                    //System.out.println("!!!!!!!!!!!!!!!!!!p1 won"); for debugging
+                    game = new FourInARow();
+                    game.printBoard();
+                }else{
+                    
+                    playagain=0;
+                    game.printBoard();
+                    System.out.println(RED+"\n-GAME OVER-"+RESET);
+                    break;
+                }
+            } else if (game.hasWon(p2)){
+                
+                game.printBoard();
+                System.out.println("\n"+MAGENTAp2+"P2"+RESET+ " HAS WON! ");
+                System.out.println(BLUE+"\nPLAY AGAIN ?"+RESET);
+
+                System.out.println(playAgainQuote);
+                try{
+                    playagain = scanner.nextInt();
+                }catch(Exception e){
+                    playagain=0;
+                    game.printBoard();
+                    System.out.println(RED+"\n-GAME OVER-"+RESET);
+                    break;
+                }
+                
+                if (playagain==1){
+                    //System.out.println("!!!!!!!!!!!!!!!!!!p2 won"); for debugging
+                    game = new FourInARow();
+                    game.printBoard();
+
+                } else {
+                    
+                    playagain=0;
+                    game.printBoard();
+                    System.out.println(RED+"\n-GAME OVER-"+RESET);
+                    break;
+                }
+                
             } else {
                 System.out.println("\n");
             }
-        }
+        } 
+        // (!won by p1 or !won by p2) __ want to play again ==> true ==> boucle continue
+        //  (false      || true     ) __ true
+     
         scanner.close();
     }
 
@@ -160,7 +265,6 @@ public class FourInARow {
 
 
     public FourInARow() {
-        // add your own code here
         for (int i = 0; i < ROWS; i++) {
             for (int j = 0; j < COLUMNS; j++) {
                 board[i][j] = EMPTY;
@@ -235,10 +339,10 @@ public class FourInARow {
                             (board[i+3][j] == player)) {
 
 
-                                System.out.print("|--  "+board[i][j]+"  --|");
-                                System.out.print("|--  "+board[i+1][j]+"  --|");
-                                System.out.print("|--  "+board[i+2][j]+"  --|");
-                                System.out.print("|--  "+board[i+3][j]+"  --|");
+                                //System.out.print("|--  "+board[i][j]+"  --|");
+                                //System.out.print("|--  "+board[i+1][j]+"  --|");
+                                //System.out.print("|--  "+board[i+2][j]+"  --|");
+                                //System.out.print("|--  "+board[i+3][j]+"  --|");
 
                                 board[i][j]=YELLOW+board[i][j]+RESET;
                                 board[i+1][j]=YELLOW+board[i+1][j]+RESET;
@@ -342,3 +446,4 @@ public class FourInARow {
         System.out.println("  1   2   3   4   5   6   7");
     }
 }
+
